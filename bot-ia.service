@@ -1,0 +1,20 @@
+[Unit]
+Description=Meta LLM
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=admin
+Group=admin
+WorkingDirectory=/home/admin/bots/bot_ia
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=-/home/admin/bots/bot_ia/.env
+ExecStart=/home/admin/bots/bot_ia/venv/bin/python /home/admin/bots/bot_ia/bot.py
+MemoryMax=150M
+MemoryAccounting=true
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

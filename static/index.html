@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0f14">
+  <title>Meta LLM</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github-dark.min.css">
+</head>
+<body>
+  <section id="login">
+    <form id="login-form" class="card">
+      <p class="eyebrow">Meta LLM</p>
+      <h1>Entra al panel</h1>
+      <p class="muted">La misma contraseña de la red local.</p>
+      <label class="sr" for="password">Contraseña</label>
+      <input id="password" type="password" autocomplete="current-password" placeholder="Contraseña">
+      <button id="enter" type="submit">Entrar</button>
+      <p id="login-error" class="error" role="alert"></p>
+    </form>
+  </section>
+
+  <div id="app" class="hidden">
+    <header class="topbar">
+      <button id="menu-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="brand">
+        <strong>Meta LLM</strong>
+        <span id="header-model"></span>
+      </div>
+    </header>
+    <div id="backdrop" class="hidden"></div>
+    <aside id="drawer" aria-label="Ajustes">
+      <div class="drawer-head">
+        <strong>Ajustes</strong>
+        <button id="close-drawer" type="button" aria-label="Cerrar menú">×</button>
+      </div>
+      <label for="model">Modelo</label>
+      <select id="model"></select>
+      <p id="model-description"></p>
+      <button id="clear" type="button">Borrar historial</button>
+      <button id="status-btn" type="button">Estado de conexión</button>
+      <p id="status"></p>
+      <p class="hint">En el móvil, adjunta una foto. En el ordenador también puedes soltarla en el chat.</p>
+    </aside>
+    <main>
+      <nav class="tabs" aria-label="Vistas">
+        <button id="tab-chat" type="button" class="active" aria-selected="true">💬 Chat General</button>
+        <button id="tab-audit" type="button" aria-selected="false">🌐 Auditoría Web</button>
+      </nav>
+      <section id="view-chat">
+        <div id="log" aria-live="polite"></div>
+        <div id="preview" class="hidden"></div>
+        <form id="composer">
+          <input id="file" type="file" accept="image/*" class="sr">
+          <button id="attach" type="button" aria-label="Adjuntar foto">+</button>
+          <textarea id="text" rows="1" placeholder="Escribe un mensaje"></textarea>
+          <button id="send" type="submit">Enviar</button>
+        </form>
+      </section>
+      <section id="view-audit" class="hidden">
+        <form id="audit-form" class="audit-form">
+          <label for="audit-url">URL</label>
+          <input id="audit-url" type="url" inputmode="url" placeholder="https://ejemplo.com" required>
+          <label for="audit-note">Qué quieres ver en el código</label>
+          <textarea id="audit-note" rows="3" placeholder="Enlaces, comentarios y IDs de analítica que aparezcan en la página" required></textarea>
+          <button id="audit-run" type="submit">Leer página</button>
+        </form>
+        <p id="audit-meta" class="hint"></p>
+        <div id="audit-wait" class="hidden" role="status">
+          <div class="bar" aria-hidden="true"><span id="audit-bar"></span></div>
+          <p id="audit-step"><span id="audit-pct">0%</span> <span id="audit-label">Preparando…</span></p>
+        </div>
+        <div id="audit-log"></div>
+        <form id="audit-follow" class="audit-form hidden">
+          <label for="audit-next">Siguiente pregunta sobre esta página</label>
+          <textarea id="audit-next" rows="2" placeholder="Pregunta solo sobre el código ya descargado"></textarea>
+          <button id="audit-more" type="submit">Seguir</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
